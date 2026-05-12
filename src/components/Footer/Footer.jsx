@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { BRAND_NAME, BRAND_COPYRIGHT } from '../../constants/brand'
 
 function Footer() {
@@ -10,21 +11,21 @@ function Footer() {
 
           {/* COL 1 — Navigation */}
           <div className="flex flex-col gap-4">
-            <a href="#about" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">About us</a>
-            <a href="#contacts" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Contacts</a>
-            <a href="#services" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Services</a>
-            <a href="#career" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Career</a>
-            <a href="#blog" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Blog</a>
-            <a href="#portfolio" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Portfolio</a>
-            <a href="#commercials" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Commercials</a>
+            <a href="/#about"    className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">About us</a>
+            <a href="/#contacts" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Contacts</a>
+            <a href="/#services" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Services</a>
+            <a href="/#career"   className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Career</a>
+            <a href="/#blog"     className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Blog</a>
+            <Link to="/portfolio" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Portfolio</Link>
+            <a href="/#commercials" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Commercials</a>
           </div>
 
           {/* COL 2 — Services */}
           <div className="flex flex-col gap-4">
-            <a href="#arch" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Architectural Design</a>
-            <a href="#interiors" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Residential Interiors</a>
-            <a href="#furniture" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Furniture Brand Fiftyfourms</a>
-            <a href="#sitemap" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Site Map</a>
+            <a href="/#arch"      className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Architectural Design</a>
+            <a href="/#interiors" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Residential Interiors</a>
+            <a href="/#furniture" className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Furniture Brand Fiftyfourms</a>
+            <a href="/#sitemap"   className="text-[12px] font-medium uppercase tracking-[1.8px] text-white/80 transition-colors hover:text-[#d4873a]">Site Map</a>
           </div>
 
           {/* COL 3 — Contact */}
@@ -67,9 +68,9 @@ function Footer() {
           {/* COL 5 — Brand & Social */}
           <div className="flex flex-col gap-5">
             <div>
-              <p className="text-[28px] font-light uppercase tracking-[2px] text-white leading-none">
+              <Link to="/" className="text-[28px] font-light uppercase tracking-[2px] text-white leading-none hover:text-[#d4873a] transition-colors">
                 {BRAND_NAME}
-              </p>
+              </Link>
               <p className="mt-2 text-[10px] font-light leading-[1.6] text-white/40">
                 {BRAND_COPYRIGHT}
               </p>
@@ -80,8 +81,8 @@ function Footer() {
               <div className="flex flex-col gap-2">
                 <a href="#instagram" className="text-[12px] font-light text-[#d4873a] transition-colors hover:text-white">Instagram*</a>
                 <a href="#pinterest" className="text-[12px] font-light text-white/70 transition-colors hover:text-white">Pinterest</a>
-                <a href="#vk" className="text-[12px] font-light text-white/70 transition-colors hover:text-white">VKontakte</a>
-                <a href="#youtube" className="text-[12px] font-light text-white/70 transition-colors hover:text-white">YouTube</a>
+                <a href="#vk"        className="text-[12px] font-light text-white/70 transition-colors hover:text-white">VKontakte</a>
+                <a href="#youtube"   className="text-[12px] font-light text-white/70 transition-colors hover:text-white">YouTube</a>
               </div>
               <p className="mt-3 text-[10px] font-light leading-[1.6] text-white/30">
                 *The Meta company is recognized as an extremist organization and is banned in the Russian Federation.
@@ -99,11 +100,13 @@ function Footer() {
       >
         <div className="flex items-center gap-5">
           <button type="button" className="text-[12px] font-light text-white transition-colors hover:text-[#d4873a]">En</button>
-          <a href="#privacy" className="text-[12px] font-light text-white/50 transition-colors hover:text-white">Privacy Policy</a>
+          <a href="/#privacy" className="text-[12px] font-light text-white/50 transition-colors hover:text-white">Privacy Policy</a>
         </div>
 
         <a
-          href="#contact"
+          href="https://wa.me/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 text-white/60 text-[12px] tracking-wide transition-colors hover:text-white"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
