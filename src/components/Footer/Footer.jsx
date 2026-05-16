@@ -3,7 +3,7 @@ import { BRAND_NAME, BRAND_COPYRIGHT } from '../../constants/brand'
 
 function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] text-white">
+    <footer className="bg-[#0a0a0a] text-white mt-10">
 
       {/* MAIN FOOTER GRID */}
       <div className="px-10 pt-16 pb-10 lg:px-20 lg:pt-20">

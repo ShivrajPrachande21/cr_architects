@@ -5,8 +5,8 @@ import { BRAND_NAME } from '../../constants/brand'
 const NAV_ITEMS = [
   { label: 'About',     to: '/#about' },
   { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Contacts',  to: '/#contacts' },
-  { label: 'Services',  to: '/#services' },
+  { label: 'Contacts',  to: '/contacts' },
+  { label: 'Services',  to: '/services' },
 ]
 
 function Navbar() {
@@ -96,9 +96,8 @@ function Navbar() {
           aria-label="Primary navigation"
         >
           {NAV_ITEMS.map(({ label, to }) => {
-            const active = to.startsWith('/') && !to.startsWith('/#')
-              ? pathname === to
-              : pathname === '/'
+            const isPageRoute = to.startsWith('/') && !to.startsWith('/#')
+            const active = isPageRoute ? pathname === to : false
 
             return (
               <Link
@@ -106,7 +105,7 @@ function Navbar() {
                 to={to}
                 className={[
                   'text-[13px] leading-none transition-colors duration-200',
-                  active && to === `/portfolio` && pathname === '/portfolio'
+                  active
                     ? 'text-white border-b border-white pb-[2px]'
                     : 'text-white/90 hover:text-[#f39726]',
                 ].join(' ')}

@@ -340,8 +340,6 @@ function PortfolioPage() {
           </p>
         )}
       </section>
-
-      <Footer />
       <FloatingContact />
     </main>
   )

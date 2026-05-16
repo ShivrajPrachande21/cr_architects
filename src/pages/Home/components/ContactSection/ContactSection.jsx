@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { BRAND_NAME } from '../../../../constants/brand'
 import { motion, useInView } from 'motion/react';
+import teamPhoto from '../../../../assets/teamPhoto.png';
 
 function ContactSection() {
   const [name, setName] = useState('');
@@ -11,39 +12,27 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-[#111110] text-white mx-auto max-w-[1750px] overflow-hidden min-h-[700px] rounded-[34px]"
+      className="bg-[#111110] text-white mx-auto max-w-[1750px] overflow-hidden min-h-[700px] rounded-[34px] "
       ref={ref}
     >
-      <div className="grid grid-cols-2 min-h-[620px] max-[900px]:grid-cols-1">
+      <div className="grid min-h-[620px] max-[900px]:grid-cols-1" style={{ gridTemplateColumns: '60% 40%' }}>
 
         {/* LEFT — photo */}
         <motion.div
-          className="relative overflow-hidden max-[900px]:min-h-[380px]"
+          className="relative max-[900px]:min-h-[380px]"
           initial={{ opacity: 0, x: -60 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div
-            className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-            aria-hidden="true"
+            className="relative w-full h-full overflow-hidden"
+            style={{ borderRadius: '30px' }}
           >
-            <span
-              className="font-light text-white/[0.04] leading-none"
-              style={{ fontSize: 'clamp(260px, 28vw, 420px)' }}
-            >
-              S
-            </span>
-          </div>
-
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1c1a18] to-[#0e0d0c] flex items-end">
-            <div className="p-8">
-              <p className="text-[11px] font-medium uppercase tracking-[2px] text-[#d4873a]">
-                Olga Ivanova and Stanislav Kluev —
-              </p>
-              <p className="text-[11px] font-medium uppercase tracking-[2px] text-[#d4873a]">
-                CEO {BRAND_NAME}
-              </p>
-            </div>
+            <img
+              src={teamPhoto}
+              alt="CR Architects team"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
           </div>
         </motion.div>
 

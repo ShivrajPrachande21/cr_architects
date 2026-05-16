@@ -93,8 +93,6 @@ function Home() {
       <HowItWorksSection />
 
       <ContactSection />
-
-      <Footer />
     </main>
   )
 }
