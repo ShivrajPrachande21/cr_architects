@@ -5,7 +5,7 @@ export default function WorldMap() {
     <img
       src={worldMapSvg}
       alt="World map with project locations"
-      className="w-full h-full object-contain object-center"
+      className="w-full h-auto lg:h-full object-contain object-center"
       style={{ display: 'block' }}
     />
   );

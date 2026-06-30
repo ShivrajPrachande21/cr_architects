@@ -31,10 +31,10 @@ export default function FilterBar({
   onSearchChange,
 }) {
   return (
-    <div className="relative z-[9999] flex flex-wrap items-center justify-between gap-4 rounded-[28px] bg-[black]/95 p-2 backdrop-blur-xl">
+    <div className="relative z-[9999] flex flex-col gap-3 rounded-[28px] bg-[black]/95 p-2 backdrop-blur-xl sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
 
-      {/* TABS */}
-      <div className="flex overflow-visible rounded-full border border-white/10 bg-[#171615] p-1">
+      {/* TABS — scroll horizontally on small screens instead of overflowing */}
+      <div className="flex max-w-full flex-nowrap overflow-x-auto rounded-full border border-white/10 bg-[#171615] p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {tabs.map((tab) => {
           const active = tab === 'All' ? activeTab === null : activeTab === tab
           return (
@@ -42,7 +42,7 @@ export default function FilterBar({
               key={tab}
               type="button"
               onClick={() => onTabChange(tab === 'All' ? null : tab)}
-              className={`rounded-full px-6 py-[10px] text-[11px] tracking-[1.4px] uppercase transition-all duration-200
+              className={`shrink-0 whitespace-nowrap rounded-full px-5 py-[10px] text-[11px] tracking-[1.4px] uppercase transition-all duration-200 sm:px-6
                 ${active
                   ? 'bg-[#d4873a] text-white shadow-[0_2px_12px_rgba(212,135,58,0.35)]'
                   : 'text-white/45 hover:text-white/80'
@@ -54,8 +54,8 @@ export default function FilterBar({
         })}
       </div>
 
-      {/* SEARCH */}
-      <div className="flex min-w-[260px] items-center gap-3 rounded-full border border-white/10 bg-[#171615] px-5 py-3">
+      {/* SEARCH — full width on mobile */}
+      <div className="flex w-full items-center gap-3 rounded-full border border-white/10 bg-[#171615] px-5 py-3 sm:w-auto sm:min-w-[260px]">
         <input
           type="text"
           value={search}

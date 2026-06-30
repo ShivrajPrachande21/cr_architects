@@ -15,7 +15,7 @@ function ContactSection() {
       className="bg-[#111110] text-white mx-auto max-w-[1750px] overflow-hidden min-h-[700px] rounded-[34px] "
       ref={ref}
     >
-      <div className="grid min-h-[620px] max-[900px]:grid-cols-1" style={{ gridTemplateColumns: '60% 40%' }}>
+      <div className="grid min-h-[620px] grid-cols-1 lg:grid-cols-[60%_40%]">
 
         {/* LEFT — photo */}
         <motion.div

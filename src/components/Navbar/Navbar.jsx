@@ -12,8 +12,14 @@ const NAV_ITEMS = [
 function Navbar() {
   const { pathname } = useLocation()
   const [secondaryVisible, setSecondaryVisible] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
   const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0)
   const mouseNearTop = useRef(false)
+
+  /* close the mobile menu whenever the route changes */
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     function handleScroll() {
@@ -65,19 +71,47 @@ function Navbar() {
           {BRAND_NAME}
         </Link>
 
-        <Link
-          to="/#contact"
-          className="flex items-center justify-end gap-[22px] text-[13px] leading-none text-white/90 transition-colors duration-200 hover:text-[#f39726] max-[800px]:gap-0 max-[800px]:text-[0]"
-        >
-          <span className="max-[800px]:hidden">Contact us</span>
-          <span className="relative inline-flex h-5 w-[15px] rotate-[-45deg] rounded-[999px_999px_999px_0] border-[1.6px] border-current" aria-hidden="true">
-            <span className="absolute left-1 top-[5px] h-[5px] w-[5px] rounded-full border-[1.3px] border-current" />
-          </span>
-        </Link>
+        <div className="flex items-center justify-end gap-4">
+          <Link
+            to="/#contact"
+            className="flex items-center gap-[22px] text-[13px] leading-none text-white/90 transition-colors duration-200 hover:text-[#f39726] max-[800px]:hidden"
+          >
+            <span>Contact us</span>
+            <span className="relative inline-flex h-5 w-[15px] rotate-[-45deg] rounded-[999px_999px_999px_0] border-[1.6px] border-current" aria-hidden="true">
+              <span className="absolute left-1 top-[5px] h-[5px] w-[5px] rounded-full border-[1.3px] border-current" />
+            </span>
+          </Link>
+
+          {/* Hamburger — tablet / mobile only */}
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((o) => !o)}
+            className="hidden h-9 w-9 flex-col items-center justify-center gap-[5px] max-[800px]:flex"
+          >
+            <span
+              className={`block h-[1.6px] w-6 bg-white transition-transform duration-300 ${
+                menuOpen ? 'translate-y-[6.6px] rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`block h-[1.6px] w-6 bg-white transition-opacity duration-300 ${
+                menuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`block h-[1.6px] w-6 bg-white transition-transform duration-300 ${
+                menuOpen ? '-translate-y-[6.6px] -rotate-45' : ''
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
-      {/* SECONDARY BAR — slide + fade on scroll */}
+      {/* SECONDARY BAR — desktop only; slide + fade on scroll */}
       <div
+        className="max-[800px]:hidden"
         style={{
           maxHeight: secondaryVisible ? '60px' : '0px',
           opacity: secondaryVisible ? 1 : 0,
@@ -114,6 +148,40 @@ function Navbar() {
               </Link>
             )
           })}
+        </nav>
+      </div>
+
+      {/* MOBILE MENU — collapsible dropdown */}
+      <div
+        className={`hidden overflow-hidden bg-[#15110f]/95 backdrop-blur-[14px] transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] max-[800px]:block ${
+          menuOpen ? 'max-h-[340px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <nav className="flex flex-col px-[18px]" aria-label="Mobile navigation">
+          {NAV_ITEMS.map(({ label, to }) => {
+            const isPageRoute = to.startsWith('/') && !to.startsWith('/#')
+            const active = isPageRoute ? pathname === to : false
+            return (
+              <Link
+                key={label}
+                to={to}
+                onClick={() => setMenuOpen(false)}
+                className={[
+                  'border-b border-white/10 py-4 text-[13px] leading-none transition-colors duration-200',
+                  active ? 'text-white' : 'text-white/90 hover:text-[#f39726]',
+                ].join(' ')}
+              >
+                {label.toUpperCase()}
+              </Link>
+            )
+          })}
+          <Link
+            to="/#contact"
+            onClick={() => setMenuOpen(false)}
+            className="py-4 text-[13px] leading-none text-[#f39726]"
+          >
+            CONTACT US
+          </Link>
         </nav>
       </div>
     </header>

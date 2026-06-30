@@ -4,7 +4,7 @@ function FloatingContact() {
       href="https://wa.me/"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full px-5 py-3 text-[13px] font-light tracking-wide text-white transition-all duration-300 hover:scale-105 hover:brightness-110"
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 rounded-full px-5 py-3 text-[13px] font-light tracking-wide text-white transition-all duration-300 hover:scale-105 hover:brightness-110 lg:left-auto lg:right-6 lg:translate-x-0"
       style={{
         background: 'rgba(22, 20, 19, 0.88)',
         backdropFilter: 'blur(14px)',

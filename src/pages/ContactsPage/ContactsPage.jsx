@@ -122,12 +122,9 @@ export default function ContactsPage() {
         className="bg-[#111110] overflow-hidden"
         style={{ paddingTop: '105px' }}
       >
-        <div
-          className="grid max-[900px]:grid-cols-1"
-          style={{ gridTemplateColumns: '40% 60%' }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]">
           {/* ── LEFT: form (40%) ─────────────────────── */}
-          <div className="flex flex-col px-10 py-10 lg:px-20 lg:py-14">
+          <div className="flex flex-col px-6 py-10 sm:px-10 lg:px-20 lg:py-14">
             {/* ← Home */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -273,7 +270,7 @@ export default function ContactsPage() {
 
           {/* ── RIGHT: image (60%) ───────────────────── */}
           <motion.div
-            className="relative max-[900px]:hidden py-4 pr-6 pb-4"
+            className="relative px-6 pb-10 sm:px-10 lg:py-4 lg:pr-6 lg:pb-4 lg:pl-0"
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{
@@ -283,7 +280,7 @@ export default function ContactsPage() {
             }}
           >
             <div
-              className="relative w-full h-[70vh] mt-20 overflow-hidden"
+              className="relative w-full h-[44vh] overflow-hidden lg:h-[70vh] lg:mt-20"
               style={{ borderRadius: '20px' }}
             >
               <img
@@ -297,14 +294,13 @@ export default function ContactsPage() {
       </section>
 
       {/* ── ALL WORLD + Social row ── */}
-      <div className="px-10 lg:px-20 py-10 flex items-center justify-between gap-8 max-[768px]:flex-col max-[768px]:items-start">
+      <div className="px-6 sm:px-10 lg:px-20 py-10 flex items-center justify-between gap-8 max-[768px]:flex-col max-[768px]:items-stretch">
         {/* Left: All World card */}
         <div
-          className="flex items-center gap-5 rounded-2xl px-6 py-5 flex-shrink-0"
+          className="flex items-center gap-5 rounded-2xl px-6 py-5 w-full sm:w-auto sm:min-w-[340px] flex-shrink-0"
           style={{
             background: 'rgba(28,26,24,0.9)',
             border: '1px solid rgba(255,255,255,0.06)',
-            minWidth: '340px',
           }}
         >
           {/* Globe icon */}
@@ -442,16 +438,13 @@ export default function ContactsPage() {
           SECTION 2 — World map  (text 40% | map 60%)
       ══════════════════════════════════════════════════ */}
       <section className="relative bg-[#111110] overflow-hidden">
-        <div
-          className="grid max-[900px]:grid-cols-1"
-          style={{ gridTemplateColumns: '40% 60%' }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]">
           {/* Left: text */}
-          <div className="flex flex-col justify-between px-10 py-16 lg:px-20 lg:py-24">
+          <div className="flex flex-col justify-between gap-10 px-6 py-14 sm:px-10 lg:px-20 lg:py-24">
             <div>
               <motion.h2
                 className="mb-8 font-light uppercase leading-[1.2] tracking-[1px] text-[#f0ebe4]"
-                style={{ fontSize: 'clamp(18px, 2vw, 10px)' }}
+                style={{ fontSize: 'clamp(18px, 2vw, 28px)' }}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -487,17 +480,17 @@ export default function ContactsPage() {
           </div>
 
           {/* Right: world map — flex so image sizes naturally without clipping */}
-          <div className="flex items-center max-[900px]:hidden">
+          <div className="flex items-center px-6 pb-10 sm:px-10 lg:px-0 lg:pb-0">
             <WorldMap />
           </div>
         </div>
 
         {/* Info cards */}
         {/* Info Cards Section */}
-        <div className="px-10 lg:px-24 pb-20 pt-6 mt-20 mx-auto max-w-7xl">
-          <div className="flex  gap-6 max-[900px]:grid-cols-1">
+        <div className="px-6 sm:px-10 lg:px-24 pb-20 pt-6 mt-12 lg:mt-20 mx-auto max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Address Card */}
-            <div className="flex items-center gap-5 rounded-[34px] bg-[#1d1d1f] px-7 py-7 min-h-[110px] shadow-[0_0_30px_rgba(0,0,0,0.25)]">
+            <div className="flex items-center gap-5 rounded-[34px] bg-[#1d1d1f] px-7 py-7 min-h-[110px] w-full lg:flex-1 shadow-[0_0_30px_rgba(0,0,0,0.25)]">
               <div className="flex items-center justify-center text-[#8d8d8d]">
                 <LocationIcon className="w-8 h-8" />
               </div>
@@ -515,7 +508,7 @@ export default function ContactsPage() {
             </div>
 
             {/* Opening Hours Card */}
-            <div className="flex items-center  w-[300px] gap-5 rounded-[34px] bg-[#1d1d1f] px-7 py-7 min-h-[110px] shadow-[0_0_30px_rgba(0,0,0,0.25)]">
+            <div className="flex items-center w-full lg:w-[300px] gap-5 rounded-[34px] bg-[#1d1d1f] px-7 py-7 min-h-[110px] shadow-[0_0_30px_rgba(0,0,0,0.25)]">
               <div className="flex items-center justify-center text-[#8d8d8d]">
                 <CalendarIcon className="w-8 h-8" />
               </div>
@@ -532,7 +525,7 @@ export default function ContactsPage() {
             </div>
 
             {/* Non Working Days Card */}
-            <div className="flex items-center w-[300px] rounded-[34px] bg-[#1d1d1f] px-8 py-7 min-h-[110px] shadow-[0_0_30px_rgba(0,0,0,0.25)]">
+            <div className="flex items-center w-full lg:w-[300px] rounded-[34px] bg-[#1d1d1f] px-8 py-7 min-h-[110px] shadow-[0_0_30px_rgba(0,0,0,0.25)]">
               <div>
                 <h3 className="text-[#d9891d] text-[15px] tracking-[1.8px] uppercase font-light mb-2">
                   Non-Working Days
