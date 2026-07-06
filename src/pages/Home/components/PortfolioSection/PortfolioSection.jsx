@@ -1,24 +1,33 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
+import residenceImage from '../../../../assets/homeImages/1000433486.jpeg';
+import interiorsImage from '../../../../assets/homeImages/1000433487.jpeg';
+import architectureImage from '../../../../assets/homeImages/1000433491.jpeg';
 
 const portfolioCards = [
   {
     label: 'Residence',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+    image: residenceImage,
+    // matches the Portfolio filter tab / project.section value
+    filter: 'Residence',
   },
   {
     label: 'Interiors',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80',
+    image: interiorsImage,
+    filter: 'Interiors',
   },
   {
     label: 'Architecture',
-    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80',
+    image: architectureImage,
+    filter: 'Architects',
   },
 ];
 
 function PortfolioSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const navigate = useNavigate();
 
   return (
     <section className="relative bg-[#0f0f0f] text-white" ref={ref}>
@@ -41,6 +50,15 @@ function PortfolioSection() {
           {portfolioCards.map((card, i) => (
             <motion.div
               key={card.label}
+              onClick={() => navigate(`/portfolio?filter=${card.filter}`)}
+              role="link"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate(`/portfolio?filter=${card.filter}`);
+                }
+              }}
               className="group relative overflow-hidden rounded-3xl bg-gray-950 cursor-pointer"
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}

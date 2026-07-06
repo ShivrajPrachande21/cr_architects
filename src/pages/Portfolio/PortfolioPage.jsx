@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { motion, useInView } from 'motion/react'
 import { BRAND_NAME } from '../../constants/brand'
 import Navbar from '../../components/Navbar'
@@ -161,9 +161,22 @@ function ProjectCard({ project, index }) {
 }
 
 /* ── page ───────────────────────────────────────────────── */
+// section values that map to a valid filter tab (must match FilterBar tabs)
+const FILTERABLE_SECTIONS = ['Architects', 'Interiors', 'Residence']
+
 function PortfolioPage() {
-  const [activeTab, setActiveTab] = useState(null)
+  const [searchParams] = useSearchParams()
+  const initialTab = FILTERABLE_SECTIONS.includes(searchParams.get('filter'))
+    ? searchParams.get('filter')
+    : null
+  const [activeTab, setActiveTab] = useState(initialTab)
   const [search, setSearch] = useState('')
+
+  // keep the active tab in sync when arriving via a ?filter= link
+  useEffect(() => {
+    const f = searchParams.get('filter')
+    setActiveTab(FILTERABLE_SECTIONS.includes(f) ? f : null)
+  }, [searchParams])
   // mirrors Navbar's secondaryVisible so button stops exactly below the navbar
   const [navbarFull, setNavbarFull] = useState(true)
   const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0)
