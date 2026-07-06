@@ -1,8 +1,14 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import Navbar from '../../components/Navbar'
 import { BRAND_NAME } from '../../constants/brand'
 import Footer from '../../components/Footer/Footer'
-import heroImage from '../../assets/home-hero.jpg'
+import heroSlide1 from '../../assets/homeImages/1000433486.jpeg'
+import heroSlide2 from '../../assets/homeImages/1000433491.jpeg'
+import heroSlide3 from '../../assets/homeImages/1000433487.jpeg'
+import heroSlide4 from '../../assets/homeImages/1000433490.jpeg'
+import heroSlide5 from '../../assets/homeImages/1000433484.jpeg'
+import heroSlide6 from '../../assets/homeImages/1000433485.jpeg'
 import GlobalReachSection from './components/GlobalReachSection'
 import PortfolioSection from './components/PortfolioSection/PortfolioSection'
 import LifelongPartnerSection from './components/LifelongPartnerSection'
@@ -11,7 +17,28 @@ import WorldwideRecognitionSection from './components/WorldwideRecognitionSectio
 import ClientsSection from './components/ClientsSection'
 import HowItWorksSection from './components/HowItWorksSection'
 import ContactSection from './components/ContactSection'
+// Hero background slideshow — cycles the CR renders
+const HERO_SLIDES = [
+  heroSlide1,
+  heroSlide2,
+  heroSlide3,
+  heroSlide4,
+  heroSlide5,
+  heroSlide6,
+]
+
+const SLIDE_DURATION = 5000 // ms each slide stays before crossfading
+
 function Home() {
+  const [slide, setSlide] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+    }, SLIDE_DURATION)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <main className="min-h-screen bg-[#0f0f0f] text-white">
       <Navbar />
@@ -20,14 +47,27 @@ function Home() {
         className="relative min-h-screen overflow-hidden isolate"
         aria-label={`${BRAND_NAME} landing page`}
       >
-        <motion.img
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center saturate-[0.82] contrast-[1.04] max-[900px]:object-[58%_center]"
-          src={heroImage}
-          alt="Premium interior space"
-          initial={{ opacity: 0, scale: 1.06 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-        />
+        {/* Background slider — crossfade + slow Ken Burns zoom for smoothness */}
+        <div className="absolute inset-0 -z-20 overflow-hidden">
+          {HERO_SLIDES.map((src, i) => (
+            <motion.img
+              key={src}
+              className="absolute inset-0 h-full w-full object-cover object-center saturate-[0.82] contrast-[1.04] max-[900px]:object-[58%_center]"
+              src={src}
+              alt={i === 0 ? 'CR Architects premium residence' : ''}
+              aria-hidden={i !== slide}
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{
+                opacity: i === slide ? 1 : 0,
+                scale: i === slide ? 1.1 : 1,
+              }}
+              transition={{
+                opacity: { duration: 1.6, ease: [0.22, 1, 0.36, 1] },
+                scale: { duration: SLIDE_DURATION / 1000 + 1.6, ease: [0.22, 1, 0.36, 1] },
+              }}
+            />
+          ))}
+        </div>
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(12,9,7,0.78)_0%,rgba(12,9,7,0.32)_42%,rgba(12,9,7,0.66)_100%),linear-gradient(180deg,rgba(26,22,18,0.28)_0%,rgba(26,22,18,0.06)_28%,rgba(12,11,10,0.68)_100%)]" />
         <div
           className="absolute inset-x-0 bottom-0 -z-10 h-[55%]"
